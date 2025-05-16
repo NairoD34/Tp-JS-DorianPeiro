@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TP Bibliothèque</title>
+    <script >
+
+let bibliotheque = [];
+
+function Livre(titre, auteur, annee) {
+  this.titre = titre;
+  this.auteur = auteur;
+  this.annee = annee;
+
+  this.afficherInformations = function () {
+    return `Titre : ${this.titre}\nAuteur : ${this.auteur}\nAnnée : ${this.annee}`;
+  };
+}
+
+let quitter = false;
+
+while (!quitter) {
+  let choix = prompt(
+    "Que veux-tu faire ?\n" +
+    "1. Ajouter un livre\n" +
+    "2. Afficher tous les livres\n" +
+    "3. Rechercher un livre par titre\n" +
+    "4. Supprimer un livre par titre\n" +
+    "5. Quitter"
+  );
+
+  switch (choix) {
+    case "1":
+      ajouterLivre();
+      break;
+    case "2":
+      afficherLivres();
+      break;
+    case "3":
+      rechercherLivre();
+      break;
+    case "4":
+      supprimerLivre();
+      break;
+    case "5":
+      quitter = true;
+      alert("Au revoir !");
+      break;
+    default:
+      alert("Option invalide. Essaie encore.");
+  }
+}
+
+function ajouterLivre() {
+  try {
+    let titre = prompt("Titre du livre :");
+    let auteur = prompt("Auteur :");
+    let annee = parseInt(prompt("Année de publication :"));
+
+    if (!titre || !auteur || isNaN(annee)) {
+      throw "Informations invalides";
+    }
+
+    let nouveauLivre = new Livre(titre, auteur, annee);
+    bibliotheque.push(nouveauLivre);
+    alert("Livre ajouté !");
+  } catch (erreur) {
+    alert("Erreur : " + erreur);
+  }
+}
+
+function afficherLivres() {
+  if (bibliotheque.length === 0) {
+    alert("Aucun livre dans la bibliothèque.");
+  } else {
+    let message = "Liste des livres :\n\n";
+    bibliotheque.forEach((livre, index) => {
+      message += `Livre ${index + 1} :\n${livre.afficherInformations()}\n\n`;
+    });
+    alert(message);
+  }
+}
+
+function rechercherLivre() {
+  let titre = prompt("Titre exact du livre à rechercher :");
+  let livre = bibliotheque.find(l => l.titre === titre);
+
+  if (livre) {
+    alert("Livre trouvé :\n" + livre.afficherInformations());
+  } else {
+    alert("Livre non trouvé.");
+  }
+}
+
+function supprimerLivre() {
+  let titre = prompt("Titre exact du livre à supprimer :");
+  let index = bibliotheque.findIndex(l => l.titre === titre);
+
+  if (index !== -1) {
+    bibliotheque.splice(index, 1);
+    alert("Livre supprimé.");
+  } else {
+    alert("Livre non trouvé.");
+  }
+}</script>
+  </head>
+  <body>
+  </body>
+</html>
