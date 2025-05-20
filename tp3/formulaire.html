@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ajouter un livre</title>
+</head>
+<body>
+  <h1>Ajouter un livre</h1>
+    <a href="index.html">retour</a>
+
+  <form id="ajout-livre-form">
+  <input type="text" id="titre" placeholder="Titre" required>
+  <input type="text" id="auteur" placeholder="Auteur" required>
+  <input type="number" id="annee" placeholder="Année" required>
+
+  <select id="type-livre">
+    <option value="none">--Veuillez sélectionner un type de livre</option>
+    <option value="numerique">Numérique</option>
+    <option value="papier">Papier</option>
+  </select>
+
+  <!-- Champs spécifiques -->
+  <input type="number" id="tailleFichier" placeholder="Taille du fichier (Mo)" >
+  <input type="number" id="nombrePages" placeholder="Nombre de pages"  >
+
+  <button id="subButton"type="submit" >Ajouter le livre</button>
+</form>
+
+<ul id="liste-livres"></ul>
+
+  <script type="module"  src="script.js"></script>
+</body>
+</html>
